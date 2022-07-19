@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static' , filename = 'css/normalize.css')}}>
+    <link rel="stylesheet" href={{url_for('static' , filename = 'css/grid.css')}}>
+    <link rel='stylesheet' href={{url_for('static' , filename = 'css/style.css')}}>
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet" type='text/css'>
+    <title>Image Classification WebApp</title>
+    <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
+
+<style>
+  .content {
+    max-width: 500px;
+    margin: auto;
+    }
+  .bg-img{
+    width: 100%;
+    height: 100vh;
+    background-image:linear-gradient(rgba(0, 0, 0.6, 0.61),rgba(0, 0.3, 0, 0.5)),url('static/css/front.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+        #ff{
+            margin-right: 10px;
+        }
+  
+</style>
+
+
+</head>
+  <body>
+    <div class="bg-img">
+            <div style = "width : 100%; padding-top : 5%;">
+                <div class = "header-content">
+                     <h1 style = "text-align: center;color: white"><span class="header-content-text">Camera</span></h1>
+                </div>
+            </div>
+    <h1></h1>
+      <img id = 'video' style="margin-left:10%; height: 400px; width:500px; margin-left:33%; border:1px solid green ;border-radius:10% ;" src="{{ url_for('video_feed') }}">
+     <br>
+      <br>
+      
+      <form class = "link-form" action="/takeimage" method="post" style='margin-left: 45%;' enctype="multipart/form-data">
+        <button class='btn btn-dark'>Click</button>
+    </form>
+    </div>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+     <script>
+     function myFunction() {
+      $.post("/takeimage",
+       {
+         name: 'img.jpg'
+       },
+       function(data, status){
+         alert('image saved successfully');
+       });
+    }
+/*
+    $(document).ready(function() {
+       $('#click').click(function(){
+           $.ajax({
+           url: "{{ url_for ('takeimage') }}",
+           type: "GET",
+           success: function(response) {
+               $("#video").attr('src', '/static/images/' + response);
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+         }
+         });
+       });
+    });
+*/
+</script>
+  </body>
+</html>
